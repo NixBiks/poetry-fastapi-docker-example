@@ -14,6 +14,15 @@ lint:
 	poetry run isort --check-only .
 	poetry run ruff .
 
+dev:
+	poetry run uvicorn playground.main:app --reload
+
+start:
+	poetry run gunicorn playground.main:app -w 4 -k uvicorn.workers.UvicornWorker
+
+build-image:
+	docker build -t playground --file image/Dockerfile .
+
 pre-commit:
 	poetry run pytest tests --cov
 	poetry run pyright

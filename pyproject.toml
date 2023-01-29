@@ -18,7 +18,35 @@ pytest = "^7.2.1"
 ruff = "^0.0.237"
 black = "^22.12.0"
 isort = "^5.12.0"
+httpx = "^0.23.3"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+exclude = [
+    "**/.venv",
+]
+
+[tool.isort]
+profile = "black"
+extend_skip = [
+    "scripts/install.python-poetry.org",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-r a -s"
+testpaths = [
+    "tests",
+]
+
+[tool.ruff]
+exclude = [
+    ".venv",
+    ".ruff_cache",
+    ".pytest_cache",
+    "__pycache__",
+]
+target-version = "py311"
